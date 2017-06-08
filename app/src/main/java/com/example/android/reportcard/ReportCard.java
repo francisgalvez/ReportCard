@@ -17,7 +17,7 @@ public class ReportCard {
         this.studentYear = studentYear;
         this.grades = new HashMap<String, Integer>();
     }
-    
+
     public ReportCard(String studentName, String studentYear, HashMap<String, Integer> grades) {
         this.studentName = studentName;
         this.studentYear = studentYear;
@@ -48,6 +48,16 @@ public class ReportCard {
         this.grades = grades;
     }
 
+    public double getAverage() {
+        double average = 0;
+
+        for (Map.Entry<String, Integer> it : grades.entrySet()) {
+            average += it.getValue();
+        }
+
+        return average / grades.size();
+    }
+
     @Override
     public String toString() {
         StringBuffer sb = new StringBuffer(studentName + ", who is studying " + studentYear + " got this grades:\n");
@@ -56,6 +66,8 @@ public class ReportCard {
             sb.append(it.getKey() + ": " + it.getValue() + "\n");
         }
 
+        sb.append("Your grade point average is " + this.getAverage());
+        
         return sb.toString();
     }
 }
